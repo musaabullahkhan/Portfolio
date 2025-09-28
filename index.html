@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Musaab Ullah Khan - Portfolio</title>
+
+  <!-- CSS libs -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --neon: #00ffe7;
+      --muted: #c9d1d9;
+      --bg: #0d1117;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #e6edf3;
+      font-family: "Inter", sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    nav.navbar {
+      background: #161b22;
+      box-shadow: 0 2px 8px rgba(0, 255, 200, 0.12);
+    }
+    nav .nav-link {
+      color: #e6edf3 !important;
+      transition: .25s;
+    }
+    nav .nav-link:hover {
+      color: var(--neon) !important;
+      text-shadow: 0 0 8px var(--neon);
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 16px 0;
+      background: linear-gradient(135deg, #0d1117, #0b0f14 70%);
+      box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+      .hero { padding-top: 120px; }
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+      white-space: pre-line;
+    }
+    .accent {
+      color: var(--neon);
+      text-shadow: 0 0 10px var(--neon);
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--neon);
+      text-shadow: 0 0 8px var(--neon);
+      opacity: 0;
+      animation: fadeInUp 1.6s ease forwards;
+      animation-delay: .5s;
+      margin-bottom: 6px;
+    }
+    .hero-subtext {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    section {padding: 72px 0;}
+    .about p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .progress {
+      height: 20px;
+      background: #1b222c;
+      border-radius: 50px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      background: linear-gradient(90deg, var(--neon), #00c3ff);
+      width: 0%;
+      transition: width 2s ease-in-out;
+    }
+    .project-card {
+      background: #161b22;
+      border-radius: 12px;
+      overflow: hidden;
+      border: none;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 255, 200, 0.08);
+    }
+    .project-card img {
+      max-height: 220px;
+      object-fit: cover;
+      border-bottom: 1px solid #2d333b;
+    }
+    .project-card p {
+      color: #e6edf3;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .contact {text-align: center;}
+    .contact input, .contact textarea {
+      background: #161b22;
+      border: 1px solid #2d333b;
+      color: #fff;
+    }
+    .contact input:focus, .contact textarea:focus {
+      border-color: var(--neon);
+      box-shadow: 0 0 10px var(--neon);
+      outline: none;
+    }
+    .btn-glow {
+      background: var(--neon);
+      color: #000;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 10px 22px;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-glow:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 18px var(--neon);
+    }
+    .footer {
+      background: #161b22;
+      padding: 26px 16px;
+      border-top: 1px solid #2d333b;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .footer p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+      animation: pulse 3s infinite;
+    }
+    .footer-icons {
+      margin-top: 8px;
+    }
+    .footer-icons a {
+      margin: 0 10px;
+      color: var(--neon);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: .25s;
+    }
+    .footer-icons a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: var(--neon);
+      transition: width .35s;
+    }
+    .footer-icons a:hover::after {
+      width: 100%;
+    }
+    @keyframes pulse {
+      0% {text-shadow: 0 0 2px var(--neon);}
+      50% {text-shadow: 0 0 10px var(--neon);}
+      100% {text-shadow: 0 0 2px var(--neon);}
+    }
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 180deg, var(--neon), transparent 70%);
+      animation: rotate 8s linear infinite;
+      opacity: .14;
+    }
+    @keyframes rotate {100% {transform: rotate(360deg);}}
+    /* Canvas for cursor trail */
+    #cursor-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    @media (max-width:600px) {
+      .hero h1 {font-size: 2.2rem;}
+      .hero-subtitle {font-size: 1.05rem;}
+      .hero-subtext {font-size: 1rem;}
+    }
+  </style>
+</head>
+<body>
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand accent fw-bold" href="#">MUK</a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <section class="hero">
+    <h1 class="accent" id="typewriter"></h1>
+    <p class="hero-subtitle">Frontend Developer | Future Full-Stack Engineer</p>
+    <p class="hero-subtext">17 y/o Student • Aspiring Full-Stack Developer</p>
+  </section>
+
+  <!-- about -->
+  <section id="about" class="about container" data-aos="fade-up">
+    <h2 class="accent mb-4">About Me</h2>
+    <p>Hi! My name is <span class="accent">Musaab Ullah Khan</span>, a passionate 17-year-old student of class 12. 
+    I started my journey in web development with HTML, CSS, and Bootstrap, and I’m currently diving deeper into 
+    JavaScript. I love creating responsive, user-friendly websites and my goal is to become a skilled Full-Stack Developer.</p>
+  </section>
+
+  <!-- skills -->
+  <section id="skills" class="skills container" data-aos="fade-up">
+    <h2 class="accent mb-4">Skills</h2>
+    <div class="mb-3">HTML<div class="progress"><div class="progress-bar" data-width="90%"></div></div></div>
+    <div class="mb-3">CSS<div class="progress"><div class="progress-bar" data-width="85%"></div></div></div>
+    <div class="mb-3">Bootstrap<div class="progress"><div class="progress-bar" data-width="80%"></div></div></div>
+    <div class="mb-3">GitHub<div class="progress"><div class="progress-bar" data-width="75%"></div></div></div>
+  </section>
+
+  <!-- projects -->
+  <section id="projects" class="projects container" data-aos="fade-up">
+    <h2 class="accent mb-4">Projects</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="project-card card p-0">
+          <img src="images/Web 2.png" width="600" height="220" loading="lazy" class="card-img-top" alt="Premium Villas Screenshot">
+          <div class="card-body">
+            <h5 class="card-title accent">Premium Villas Website</h5>
+            <p>A responsive property listing website with multiple pages like property details, scheduling visits, login/signup, and contact. Built with HTML, CSS, and Bootstrap.</p>
+            <a href="https://premium-villa.netlify.app/" target="_blank" class="btn btn-sm btn-glow">Live Demo</a>
+            <a href="https://github.com/musaabullahkhan/Project2" target="_blank" class="btn btn-sm btn-secondary">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="project-card card p-0">
+          <img src="images/Web 1.png" width="600" height="220" loading="lazy" class="card-img-top" alt="Student Notes Portal Screenshot">
+          <div class="card-body">
+            <h5 class="card-title accent">Student Notes Portal</h5>
+            <p>A student portal where students can log in and access study resources like PDFs. Includes login, dashboard, and forgot password features.</p>
+            <a href="https://student-notes-portal.netlify.app/" target="_blank" class="btn btn-sm btn-glow">Live Demo</a>
+            <a href="https://github.com/musaabullahkhan/Student-Portal-AI" target="_blank" class="btn btn-sm btn-secondary">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section id="contact" class="contact container" data-aos="fade-up">
+    <h2 class="accent mb-4">Contact Me</h2>
+    <p>If you’d like to collaborate or just say hi, feel free to send me a message:</p>
+    <form action="https://formspree.io/f/mzzprpjv" method="POST" class="mx-auto" style="max-width:600px;">
+      <div class="mb-3"><input type="text" name="name" class="form-control" placeholder="Your Name" required></div>
+      <div class="mb-3"><input type="email" name="email" class="form-control" placeholder="Your Email" required></div>
+      <div class="mb-3"><textarea name="message" class="form-control" rows="4" placeholder="Your Message" required></textarea></div>
+      <button type="submit" class="btn-glow">Send Me</button>
+    </form>
+  </section>
+
+  <!-- footer -->
+  <footer class="footer">
+    <p>© 2025 <span class="accent">Musaab Ullah Khan</span> • All Rights Reserved</p>
+    <div class="footer-icons">
+      <a href="https://github.com/musaabullahkhan" target="_blank">GitHub</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+  <!-- Canvas for cursor trail -->
+  <canvas id="cursor-canvas"></canvas>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Typewriter
+    (function () {
+      const lines = ["Hi, I am ", "A Passionate Developer", "Musaab Ullah Khan"];
+      const el = document.getElementById('typewriter');
+      let li = 0, ci = 0;
+      const speed = 110;
+      function type() {
+        if (li >= lines.length) return;
+        const current = lines[li];
+        if (ci < current.length) {
+          el.textContent += current.charAt(ci);
+          ci++;
+          setTimeout(type, speed);
+        } else {
+          if (current.trim() === "A Passionate Developer") {
+            setTimeout(() => { el.textContent = ""; li++; ci = 0; setTimeout(type, 400); }, 1600);
+          } else { li++; ci = 0; setTimeout(type, 400); }
+        }
+      }
+      window.addEventListener('load', type);
+    })();
+
+    // Progress bars
+    function animateProgress() {
+      document.querySelectorAll('.progress-bar').forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          bar.style.width = bar.getAttribute('data-width');
+        }
+      });
+    }
+    window.addEventListener('load', animateProgress);
+    window.addEventListener('scroll', animateProgress);
+
+    // Cursor particles
+    (function () {
+      const canvas = document.getElementById('cursor-canvas');
+      const ctx = canvas.getContext('2d');
+      let dpr = window.devicePixelRatio || 1;
+      let W = window.innerWidth, H = window.innerHeight;
+      function resize() {
+        dpr = window.devicePixelRatio || 1;
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize(); window.addEventListener('resize', resize);
+
+      const particles = [];
+      const MAX = 80;
+
+      function spawn(x, y) {
+        particles.push({
+          x, y,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: (Math.random() - 0.5) * 1.5,
+          size: 6 + Math.random() * 6,
+          life: 1,
+          decay: 0.015 + Math.random() * 0.02,
+        });
+        if (particles.length > MAX) particles.shift();
+      }
+
+      document.addEventListener('mousemove', e => {
+        spawn(e.clientX, e.clientY);
+      });
+
+      function drawStar(cx, cy, spikes, outerR, innerR, color, alpha) {
+        let rot = Math.PI / 2 * 3;
+        let x = cx, y = cy;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - outerR);
+        for (let i = 0; i < spikes; i++) {
+          x = cx + Math.cos(rot) * outerR;
+          y = cy + Math.sin(rot) * outerR;
+          ctx.lineTo(x, y);
+          rot += Math.PI / spikes;
+
+          x = cx + Math.cos(rot) * innerR;
+          y = cy + Math.sin(rot) * innerR;
+          ctx.lineTo(x, y);
+          rot += Math.PI / spikes;
+        }
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${color},${alpha})`;
+        ctx.shadowColor = `rgba(0,255,231,${alpha})`;
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, W, H);
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx * 2;
+          p.y += p.vy * 2;
+          p.life -= p.decay;
+          if (p.life <= 0) { particles.splice(i, 1); continue; }
+
+          drawStar(p.x, p.y, 5, p.size, p.size / 2, "0,255,231", p.life);
+        }
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+  </script>
+</body>
+</html>
